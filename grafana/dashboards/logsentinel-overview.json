@@ -1,0 +1,12 @@
+{
+  "annotations": { "list": [] },
+  "editable": true,
+  "panels": [
+    { "type": "stat", "title": "Logs processed / minute", "gridPos": { "h": 7, "w": 8, "x": 0, "y": 0 }, "targets": [{ "expr": "sum(rate(logsentinel_logs_processed_total[1m])) * 60" }] },
+    { "type": "stat", "title": "Anomalies / minute", "gridPos": { "h": 7, "w": 8, "x": 8, "y": 0 }, "targets": [{ "expr": "sum(rate(logsentinel_anomalies_total[1m])) * 60" }] },
+    { "type": "timeseries", "title": "Processing latency", "gridPos": { "h": 9, "w": 16, "x": 0, "y": 7 }, "targets": [{ "expr": "histogram_quantile(0.95, sum(rate(logsentinel_processing_seconds_bucket[5m])) by (le))" }] }
+  ],
+  "schemaVersion": 39,
+  "title": "LogSentinel Observability Overview",
+  "version": 1
+}
